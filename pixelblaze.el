@@ -6,7 +6,6 @@
 ;; Maintainer: Mark Grosen <mark@grosen.org>
 ;; Created: 15 Mar 2020
 ;; Version: 0.3
-;; Package-Version: 20220908.3
 ;; Package-Requires: ((emacs "27.1") (websocket "1.13"))
 ;; Keywords: games, pixelblaze, neopixel, ws2812, sk6812
 ;; URL: https://github.com/mgsb/emacs-pixelblaze
@@ -65,15 +64,15 @@
       (sleep-for 0.05)))
   (funcall pred))
 
-;; The Pixelblaze has three return types from requests (by observation):
-;;   1. Nothing
-;;   2. JSON string
-;;   3. Binary header string tables
-;; Since most requests return JSON, the default (nil) handler will
-;; return a hash from json-parse-string of the response
-;; The pixelblaze--nop utility is used for the "nothing" returned case.
 (defun pixelblaze--make-request (pb msg &optional response-handler)
-  "Send MSG to PB with response processed by RESPONSE-HANDLER."
+  "Send MSG to PB with response processed by RESPONSE-HANDLER.
+The Pixelblaze has three return types from requests (by observation):
+  1. Nothing
+  2. JSON string
+  3. Binary header string tables
+Since most requests return JSON, the default (nil) handler will
+return a hash from 'json-parse-string' of the response
+The 'pixelblaze--nop' utility is used for the nothing returned case."
   (if (not response-handler)
       (let ((response nil))
         (setf (websocket-on-message pb)
