@@ -61,3 +61,5 @@ The linting and testing tool, [makem.sh](https://github.com/alphapapa/makem.sh),
 ``` shell
 ./makem.sh all
 ```
+
+[![MELPA](https://melpa.org/packages/pixelblaze-badge.svg)](https://melpa.org/#/pixelblaze)
